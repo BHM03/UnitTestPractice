@@ -20,3 +20,47 @@ TEST(PasswordTest, single_letter_password)
 	int actual = my_password.count_leading_characters("Z");
 	ASSERT_EQ(1, actual);
 }
+
+TEST(PasswordTest, empty_password)
+{
+	Password my_password;
+	int actual = my_password.count_leading_characters("");
+	ASSERT_EQ(0, actual);
+}
+
+TEST(PasswordTest, upper_and_lower_password)
+{
+	Password my_password;
+	int actual = my_password.count_leading_characters("Zz");
+	ASSERT_EQ(1, actual);
+}
+
+
+TEST(PasswordTest, sandwich_password)
+{
+	Password my_password;
+	int actual = my_password.count_leading_characters("ZzZ");
+	ASSERT_EQ(1, actual);
+}
+
+
+TEST(PasswordTest, has_mixed_case_password)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("ZzZ");
+	ASSERT_EQ(1, actual);
+}
+
+TEST(PasswordTest, false_password)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("bbb");
+	ASSERT_EQ(0, actual);
+}
+
+TEST(PasswordTest, mixed_empty_password)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("");
+	ASSERT_EQ(0, actual);
+}
